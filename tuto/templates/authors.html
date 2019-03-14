@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{{ super() }}
+{% block main %}
+<div class="row">
+    <ul>
+{% for x in authors %}
+<li id="livre">
+    <a style="color:black" href ="/author/{{ x.id }}"> {{ x.name }}</a>
+</li>
+{%endfor%}
+</ul>
+</div>
+<div class="row">
+    <a href="/new/author" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Ajouter un nouvel auteur</a>
+</div>
+{% endblock %}
+
+
+{% block js %}
+{{ super() }}
+tabcur = "tab-authors";
+{% endblock %}

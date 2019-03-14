@@ -1,0 +1,27 @@
+h1{
+    color:red;
+}
+
+div.sample {
+    text-align: center;
+}
+
+#main{
+    margin-top : 5em;
+}
+
+body{
+    background-image: url("./images/jungle.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#livre{
+    background-color:rgba(255, 255, 255, 0.644);
+    padding-top:10px;
+
+    padding-left:10px;
+}
+
+li{
+    list-style-type: none;
+}

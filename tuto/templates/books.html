@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="row">
+{% for x in books %}
+<div id="livre" class="col-xs-6 col-sm-4 col-md-3 col-lg-1">
+<a href= "/book/{{ x.id }}"> <img src="{{ url_for('static', filename='images/'+x.img) }}" > </a>
+<p> {{ x.price }} €</p>
+</div>
+
+{%endfor%}
+</div>
+{% endblock %}
+{% block js %}
+{{ super() }}
+tabcur = "tab-books";
+{% endblock %}
