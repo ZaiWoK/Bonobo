@@ -1,3 +1,4 @@
+# coding: utf-8
 import click
 from .app import app, db
 
@@ -9,26 +10,24 @@ def loaddb(filename):
     db.create_all()
 
     import yaml
-    books = yaml.load(open(filename))
+    persos = yaml.load(open(filename))
 
-    from .models import Author, Book
+    from .models import Serie, Perso
     
-    authors = {}
-    for b in books :
-        a = b["author"]
-        if a not in authors :
-            o = Author(name=a)
+    series = {}
+    for p in persos :
+        a = p["series"]
+        if a not in series :
+            o = Serie(name=a)
             db.session.add(o)
-            authors[a] = o
+            series[a] = o
     db.session.commit()
 
-    for b in books:
-        a = authors[b["author"]]
-        o = Book(price = b["price"],
-                 title = b["title"],
-                 url = b["url"],
-                 img = b["img"],
-                 author_id = a.id)
+    for p in persos:
+        a = series[p["series"]]
+        o = Perso(name = p["displayName"]["en_US"],
+                 color = p["color"],
+                 serie_id = a.id)
         db.session.add(o)
     db.session.commit()
 

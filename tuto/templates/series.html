@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{{ super() }}
+{% block main %}
+<div class="row">
+    <ul>
+{% for x in series %}
+<li id="character">
+    <a style="color:red" href ="/serie/{{ x.id }}"> {{ x.name }}</a>
+</li>
+{%endfor%}
+</ul>
+</div>
+<div class="row">
+    <a href="/new/serie" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Ajouter une nouvelle série</a>
+</div>
+{% endblock %}
+
+
+{% block js %}
+{{ super() }}
+tabcur = "tab-series";
+{% endblock %}
