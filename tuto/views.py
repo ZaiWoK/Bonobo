@@ -39,7 +39,7 @@ class SerieForm(FlaskForm):
 def edit_serie(id):
     a = get_serie(id)
     f = SerieForm(id=a.id, name = a.name)
-    return render_template("edit-serie.html", author = a, form =f)
+    return render_template("edit-serie.html", serie = a, form =f)
 
 @app.route("/save/serie/", methods =("POST",))
 def save_serie():
@@ -52,7 +52,7 @@ def save_serie():
         db.session.commit()
         return redirect(url_for('serie', index = a.id))
     a = get_serie(int(f.id.data))
-    return render_template("edit-serie.html", author = a, form = f)
+    return render_template("edit-serie.html", serie = a, form = f)
 
 class NewSerieForm(FlaskForm):
     name = StringField('Nom', validators = [DataRequired()])
@@ -72,7 +72,7 @@ def save_newSerie():
         series = get_series()
         a = Serie(name=f.name.data)
         for serie in series:
-            if a.name == author.name :
+            if a.name == serie.name :
                 flash('Cette serie est déjà enregistrée sur le site')
                 return redirect(url_for("new-serie", form = SerieForm()))
         db.session.add(a)
@@ -101,14 +101,14 @@ def delete_serie():
     id = int(f.id.data)
     if f.validate_on_submit():
         serie=get_serie(id)
-        if have_persos(id):
+        if have_perso(id):
             persos=get_persos_for_serie(id)
             for x in persos:
                 db.session.delete(x)
                 db.session.commit()
         db.session.delete(serie)
         db.session.commit()
-        return redirect(url_for('serie'))
+        return redirect("series")
     return render_template(
         "serie.html",
         title="Serie "+str(id),
