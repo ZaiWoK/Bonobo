@@ -1,3 +1,16 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("input").focus(function(){
+        $(this).css("background-color", "#cccccc");
+      });
+      $("input").blur(function(){
+        $(this).css("background-color", "#ffffff");
+      });
+    });
+    </script>
+</head>
 {% extends "base.html" %}
 {% block main %}
 <h1>New serie</h1>
